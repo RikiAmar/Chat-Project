@@ -1,0 +1,40 @@
+<section class="gradient-custom">
+  <div class="container py-0">
+    <div class="row">
+      <!-- רוחב -->
+      <div class="col-md-12">
+        <div>
+          <div>
+            <div class="row">
+              <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                <div>
+                  <div class="input-group rounded mb-3">
+                    <!-- Start : Chat members / users list Component  -->
+                    <app-user-list *ngIf="!isGameVisible" [user]="user" (transerRoomToLobby)="getRoomFromUserList($event)" ></app-user-list>
+                    <app-game *ngIf="isGameVisible" [room]="room" [userId]="userId" ></app-game>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Position of Chat -->
+
+              <div class="col-md-6 col-lg-7 col-xl-8">
+                <div class="pt-3 pe-3" data-mdb-perfect-scrollbar="true" style=" position: relative; height: 400px">
+                  <div>
+                    <div>
+                      <!-- Start : Chat Component -->
+
+                      <app-chat *ngIf="room.selectedId !== undefined" [user]="user" [chatRoom]="room" (makeGameVisible)="getGame($event)" 
+                      (updateSumbitedUserId)="sendSubmitedUserToGame($event)"  ></app-chat>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

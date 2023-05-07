@@ -1,0 +1,42 @@
+<div>
+  <div class="menu">
+    <div class="name"> Chat With {{selectedUsername}}</div>
+  </div>
+  <ol class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="messages.length > 0">
+    <li [ngClass]="{'self': user.id == message.userId, 'other': message.selectedUserId != user.id }"
+      *ngFor="let message of messages">
+      <div class="msg">
+        <div class="user">{{message.userId === user.id ? (user.username): (selectedUsername)}}</div>
+        <p > {{ message.content }} </p>
+        <div  *ngIf="!isInvitationVisible" class="time">{{ message.date }}</div>
+        
+      </div>
+    </li>
+    <!-- הודעה להזמנה יוזר למשחק -->   
+      <div *ngIf="isInvitationVisible"> 
+      <img (click)="showGame()"  src="assets/tic-tac-toe.png" width="200px" height="140px"/>
+      <p>Click to join game</p>     
+
+      <p style="color: blueviolet;">Time left to Accept : {{timeLeftToInvitation}}</p>
+     
+    </div>   
+  </ol>
+
+
+
+  <!-- Start : Chat Sending  -->
+  <div class="typezone">
+    <form>
+      <textarea type="text" #msgInput (keydown.enter)="sendMessage(msgInput.value);false;msgInput.value='';"
+        placeholder="Say something"></textarea>
+      <ng-template #popContent>Hello, <b>Select a game</b>
+        <img (click)="sendMessage(invitationMessage)" src="assets/tic-tac-toe.png" width="200px" height="140px">
+
+      </ng-template>
+      <button *ngIf="!isInvitationVisible && !isAGameBeingPlayed" type="button" class="send" [ngbPopover]="popContent" popoverTitle="Select a game">
+      </button>
+    </form>
+    <div class="emojis"></div>
+  </div>
+  <!-- End : Chat Sending  -->
+</div>

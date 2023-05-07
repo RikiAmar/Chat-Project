@@ -1,0 +1,28 @@
+<!-- <h1>Current Player playing: {{XTurn ? 'X': 'O'}}</h1> -->
+<button (click)="closeGame()" style="height: 25px; width: 25px;">X</button>
+<h2>Tic-Tac-Toe</h2>
+<h2 >Your Sign is: {{usersListForGame[0] === room.myId ? 'X': 'O'}}</h2>
+<h3 *ngIf="isMyTurn" style="color: red;">It's Your Turn</h3>
+<br>
+<div *ngIf="isWaitingForUser">
+<div  class="spinner-border text-danger" role="status">
+  </div>
+  <span>Waiting for other player...</span>
+</div>
+
+<main *ngIf="!isWaitingForUser">
+    <ng-container *ngFor="let cell of grid; let currentCell = index">
+      <button [disabled]="!isMyTurn" class="cell" (click)="updateGridToDB(currentCell)" [ngStyle]="{'color': (cell === 'X') ? 'red': 'blue'}">{{cell}}</button>
+    </ng-container>    
+</main>
+
+<br>
+<div style="font-size: xx-large;">
+  {{winningMessage}}
+</div>
+<div style="font-size: xx-large;">
+  {{losingMessage}}
+</div>
+<div style="font-size: xx-large;">
+  {{tieingMessage}}
+</div>

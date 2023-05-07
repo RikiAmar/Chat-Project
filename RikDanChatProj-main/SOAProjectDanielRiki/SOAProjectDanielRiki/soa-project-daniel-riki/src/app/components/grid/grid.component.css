@@ -1,0 +1,22 @@
+main {
+    display: grid;
+    grid-template-columns: 100px 100px  100px;
+    gap: 1px;
+
+}
+
+.content {
+    background-color: green;
+}
+
+.cell{
+    border: 1px gray solid;
+    height: 100px;
+    width: 100px;
+    font-size: 60px;
+}
+
+.closeGame {
+    height: 25px;
+    width: 25px;
+}

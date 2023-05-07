@@ -1,0 +1,71 @@
+<section class="text-center text-lg-start">
+    <!-- Jumbotron -->
+    <div class="container py-4">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+                    <div class="card-body p-5 shadow-5 text-center">
+                        <img src="assets/logo.png" style="width: 185px;" alt="logo">
+
+
+                        <h2 class="fw-bold mb-5">Welcome back to our app</h2>
+                        <form>
+                            <!-- 2 column grid layout with text inputs for the first and last names -->
+
+                            <!-- User name input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" class="form-control" required [(ngModel)]="newUser.username"
+                                    #userName="ngModel" [ngModelOptions]="{standalone: true}"/>
+
+                                <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert">
+
+                                    <div *ngIf="userName.errors?.['required']">
+                                        You forgot to enter your username.
+                                    </div>
+                                </div>
+                                <label class="form-label">User name</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" class="form-control" required [(ngModel)]="newUser.password"
+                                    #password="ngModel" [ngModelOptions]="{standalone: true}" />
+
+                                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+
+                                    <div *ngIf="password.errors?.['required']">
+                                        You forgot to enter the password.
+                                    </div>
+                                </div>
+
+                                <label class="form-label">Password</label>
+
+                            </div>
+
+                            <!-- Submit button -->
+                            <button (click)="Login()" type="submit" class="btn btn-primary btn-block mb-4">
+                                LOGIN
+                            </button>
+                            <div>
+                                <p *ngIf="hasFailedToLogin">Username/Password is incorrect!</p>
+                                <p class="mb-0">Don't have an account? <a routerLink="/sign-up" href="#!" class="text-black-50 fw-bold">Sign
+                                        Up</a>
+                                </p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <img src="assets/img.png" class="w-100 rounded-4 shadow-4" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
